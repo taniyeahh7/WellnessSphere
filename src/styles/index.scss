@@ -67,33 +67,46 @@ img{
 }
 
 @import "partials/hero-section";
+@import "partials/improvesection";
 
-.section.improve-skills{
-    .col.img{
-        img{
-            width: 100%;
+.footer{
+    background-color: #0f0f0f;
+    color: white;
+    padding-block: 3em;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-gap: 1em;
+    .footer-section{
+        p{
+            opacity: 0.9;
+            margin-bottom: 0.5em;
+        }
+        p.title{
+            opacity: 1;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 1em;
         }
     }
-    .col.typography{
-        padding-left: 1em;
-        .skill-item{
-            border-left: 0.25em solid var(--primary-color);
-            margin-bottom: 0.5em;
-            padding: 0.1em 0 0.1em 0.5em;
-            color: var(--text-light);
-            font-weight: bold;
-            transform: translateX(100%);
-            opacity: 0;
-            animation: getAnimationDuration(0.5s) slideInRight forwards;
-            @for $i from 1 through 7{
-                &:nth-child(#{$i}){
-                    animation-delay:#{$i * .1}s;
-                }
-            }
+}
+
+
+.section.quote{
+    display: block;
+    .quote-text{
+        font-size: 1.2em;
+        line-height: 1.3;
+        color: var(--text-color);
+        svg{
+            color: var(--primary-color);
+            font-size: 1.5em;
+            margin-right: 0.5em;
         }
-        .btn{
-            margin-top: 0.75em;
-        }
+    }
+    .quote-author{
+        color: var(--text-light);
+        text-align: right;
+        margin-top: 1em;
     }
 }
 
@@ -103,6 +116,7 @@ img{
 
 .section{
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     margin-bottom: 3vw;
     .title{
@@ -127,10 +141,16 @@ img{
 @import "partials/navbar";
 
 .container{
-    padding-inline: 12vw;
+    padding-inline: 25vw;
 }
 
 @import "partials/animations.scss";
+
+@media screen and  (max-width:1280px){
+    .container{
+        padding-inline: 12vw;
+    }
+}
 
 @media screen and  (max-width:768px){
     .navbar{
@@ -141,5 +161,41 @@ img{
             display: block;
         }
 
+    }
+    .section{
+        .col{
+            width: 100%;
+            padding: 0 !important;
+            text-align: center;
+            margin-bottom: 2em;
+        }
+    }
+    .skill-item{
+        display: inline-block;
+        margin: 0.75em;
+    }
+    .section.improve-skills .btn{
+        display: block;
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+    .container{
+        padding-inline: 6vw;
+    }
+
+    .footer{
+        grid-template-columns: repeat(4,1fr);
+        .footer-section:nth-child(1){
+            grid-column: span 4;
+        }
+        .footer-section:nth-child(2),.footer-section:nth-child(3){
+            grid-column: span 2;
+        }
+    }
+}
+
+@media screen and  (max-width:480px){
+    .container{
+        padding-inline: 3vw;
     }
 }

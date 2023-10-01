@@ -1,10 +1,10 @@
 
-import {useState} from "react"
+// import {useState} from "react"
 // import Sidebar from "./Sidebar.js"
 import {faHome,faList,faCog} from "@fortawesome/free-solid-svg-icons"
 
 export default function Navbar(){
-    const [showSidebar,setShowSideBar]=useState(true);
+    // const [showSidebar,setShowSideBar]=useState(true);
     const links=[
         {
             name:"Home",
@@ -23,14 +23,14 @@ export default function Navbar(){
         }
     ]
 
-    function closeSidebar(){
-        setShowSideBar(false);
-    }
+    // function closeSidebar(){
+    //     setShowSideBar(false);
+    // }
 
     return(
         <>
             <div className="navbar container">
-                <a href="#!" className="logo">G<span>ourmet</span>Fit</a>
+                <a href="#!" className="logo">W<span>ellness</span>Sphere</a>
                 <div className="nav-links">
                     {/* <a href="#!">Home</a>
                     <a href="#!">Recipes</a>
@@ -43,10 +43,10 @@ export default function Navbar(){
                 {/* <div onClick={() => setShowSideBar(true)} className={showSidebar ? "sidebar-btn active" : "sidebar-btn"}>
                     <div className="bar"></div>
                     <div className="bar"></div>
-                    <div className="bar"></div> 
+                    <div className="bar"></div> this is the original side
                 </div> */}
             </div>
-            {/* {showSidebar && <Sidebar close={closeSidebar} links={links}/>} */}
+            {/* {showSidebar && <Sidebar close={closeSidebar} links={links}/>} this also one right under not so sure */}
             {/* <Sidebar links={links}/> */}
         </>
         
