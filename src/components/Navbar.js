@@ -1,6 +1,7 @@
 
 // import {useState} from "react"
 // import Sidebar from "./Sidebar.js"
+import { Link } from "react-router-dom"
 import {faHome,faList,faCog} from "@fortawesome/free-solid-svg-icons"
 
 export default function Navbar(){
@@ -36,7 +37,7 @@ export default function Navbar(){
                     <a href="#!">Recipes</a>
                     <a href="#!">Settings</a> */}
                     {links.map(link=>(
-                        <a href="#!" key={link.name}>{link.name}</a>
+                        <Link to={link.path} key={link.name}>{link.name}</Link>
                     ))}
                 </div>
                 {/* <div onClick={()=>setShowSideBar(!showSidebar)} className='sidebar-btn'> */}

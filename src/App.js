@@ -1,21 +1,30 @@
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom"
+
 import Navbar from "./components/Navbar.js"
-import Hero from "./components/Hero.js"
-import ImproveSkill from "./components/ImproveSkill.js";
-import QuoteSection from "./components/QuoteSection.js";
 // import ChefSection from "./components/ChefSection.js"; if want to include put in body also
 import Footer from "./components/Footer.js";
+import Home from "./pages/Home.js";
+import Recipes from "./pages/Recipes.js";
+import Settings from "./pages/Settings.js";
+
 
 function App() {
   return (
-    <div className="App">
+    <Router>
       <Navbar/>
       <div className="container main">
-        <Hero/>
-        <ImproveSkill/>
-        <QuoteSection/>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/recipes" element={<Recipes/>}/>
+          <Route path="/settings" element={<Settings/>}/>
+        </Routes>
       </div>
       <Footer/>
-    </div>
+    </Router>
   );
 }
 
