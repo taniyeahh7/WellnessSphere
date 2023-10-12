@@ -1,4 +1,4 @@
-React frontend for a Recipe Generator
+React frontend for a Recipe Generator which generates recipes on basis of health requirements of an individual.
 
 # Getting Started with Create React App
 
