@@ -1,0 +1,224 @@
+:root{
+    --background-color: #fff;
+    --background-light: #fff;
+    --shadow-color: rgba(0,0,0,0.2);
+    --primary-color: rgb(255, 0, 86);
+    --text-color: #0A0A0A;
+    --text-light: #575757;
+    --font-size: 16px;
+    --animation-speed: 1;
+}
+
+@function getAnimationDuration($duration:number){
+    @return calc($duration*var(--animation-speed));
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    font-size: var(--font-size);
+    font-family: 'Roboto',sans-serif;
+    padding-top: 55px;
+    background-color: var(--background-light);
+}
+
+a{
+    text-decoration: none;
+}
+
+.btn{
+    border: none;
+    outline: none;
+    background-color: var(--primary-color);
+    color:white;
+    padding: .75em 1em;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 3px;
+    box-shadow: 0 2px 6px var(--shadow-color);
+    &:hover{
+        box-shadow: 0 1px 3px var(--shadow-color);
+    }
+}
+
+.custom-image{
+    background-color: red;
+    height: 0;
+    width: 100%;
+    position: relative;
+    img{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    // padding top controls the length of the images
+}
+
+img{
+    object-fit: cover;
+}
+
+@import "partials/hero-section";
+@import "partials/improvesection";
+@import "partials/footer";
+
+.previous-searches{
+    display: block;
+    h2{
+        color: var(--text-color);
+        margin-bottom: 0.5em;
+    }
+    .previous-searches-container{
+        .search-item{
+            background-color: var(--primary-color);
+            display: inline-block;
+            padding: 0.5em 1em;
+            margin: 0 1em 1em 0;
+            color: white;
+            border-radius: 30px;
+            box-shadow: 0 3px 6px var(--shadow-color);
+            transform: translateX(100%);
+            opacity: 0;
+            animation: getAnimationDuration(0.5s) slideInRight forwards;
+        }
+    }
+    .search-box{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        height:35px;
+        input,.btn{
+            height:35px;
+        }
+        input{
+            min-width: 250px;
+            padding: 0 0.5em;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            border: 1px solid #4d4d4d;
+        }
+        .btn{
+            padding-block: 0;
+            padding-inline: 0.75em;
+            border-radius: 0 5px 5px 0;
+        }
+    }
+}
+
+
+.section.quote{
+    display: block;
+    .quote-text{
+        font-size: 1.2em;
+        line-height: 1.3;
+        color: var(--text-color);
+        svg{
+            color: var(--primary-color);
+            font-size: 1.5em;
+            margin-right: 0.5em;
+        }
+    }
+    .quote-author{
+        color: var(--text-light);
+        text-align: right;
+        margin-top: 1em;
+    }
+}
+
+.main{
+    padding-block:3vw; 
+}
+
+.section{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 3vw;
+    .title{
+        color: var(--text-color);
+        font-size: 2.5em;
+        margin-bottom: .25em;
+        font-weight: 900;
+    }
+    .info{
+        color: var(--text-light);
+        font-size: 1em;
+        letter-spacing: 1px;
+        line-height: 1.3em;
+        margin-bottom: 1.25em;
+    }
+    .col{
+        width: 50%;
+
+    }
+}
+
+@import "partials/navbar";
+
+.container{
+    padding-inline: 25vw;
+}
+
+@import "partials/animations.scss";
+
+@media screen and  (max-width:1280px){
+    .container{
+        padding-inline: 12vw;
+    }
+}
+
+@media screen and  (max-width:768px){
+    .navbar{
+        .nav-links{
+            display: none;
+        }
+        .sidebar-btn{
+            display: block;
+        }
+
+    }
+    .section{
+        .col{
+            width: 100%;
+            padding: 0 !important;
+            text-align: center;
+            margin-bottom: 2em;
+        }
+    }
+    .skill-item{
+        display: inline-block;
+        margin: 0.75em;
+    }
+    .section.improve-skills .btn{
+        display: block;
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+    .container{
+        padding-inline: 6vw;
+    }
+
+    .footer{
+        grid-template-columns: repeat(4,1fr);
+        .footer-section:nth-child(1){
+            grid-column: span 4;
+        }
+        .footer-section:nth-child(2),.footer-section:nth-child(3){
+            grid-column: span 2;
+        }
+    }
+}
+
+@media screen and  (max-width:480px){
+    .container{
+        padding-inline: 3vw;
+    }
+}

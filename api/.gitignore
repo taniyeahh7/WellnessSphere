@@ -1,0 +1,53 @@
+# Dependency directories
+/node_modules
+
+# Build directories
+/build
+/client/build
+
+# Environment variables
+.env
+
+# Log files
+*.log
+
+# Debugging files
+.vscode/
+.idea/
+
+# Dependency lock files
+package-lock.json
+yarn.lock
+
+# Editor-specific files
+*.swp
+.DS_Store
+
+# Compiled code
+*.class
+*.war
+*.ear
+*.jar
+
+# Cache and build directories for Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Dependency directories for client and server
+/client/node_modules
+/server/node_modules
+
+# Client-side dependencies
+/client/.env
+/client/.env.local
+/client/.env.development
+/client/.env.production
+/client/.env.test
+
+# Server-side dependencies
+/server/.env
+/server/.env.local
+/server/.env.development
+/server/.env.production
+/server/.env.test
