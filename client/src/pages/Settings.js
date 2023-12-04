@@ -72,9 +72,6 @@ export default function Settings(){
         setAnimationSpeed(i)
         setSettings(_settings)
     }
-
-
-
     const primaryColors = [
         "rgb(255, 0, 86)",
         "rgb(33, 150, 243)",
