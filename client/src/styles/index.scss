@@ -110,9 +110,13 @@ img{
             box-shadow: 0 2px 5px var(--shadow-color);
             svg{
                 height: 1.5em;
-                width: 1.5
-                ;
+                width: 1.5;
             }
+        }
+
+        .btn span{
+            display: inline-block;
+            margin-left: 0.5em;
         }
     }
 }
