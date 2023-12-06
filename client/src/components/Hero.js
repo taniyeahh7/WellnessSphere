@@ -17,7 +17,7 @@ export default function Hero(){
         <div className="section hero">
             <div className="col typography">
                 <h1 className="title">What are we about</h1>
-                <p className="info">GourmetFit is youre one-stop destination to practice healthy easting habits and maintaining perfect exercising habits.</p>
+                <p className="info">Wellness Sphere is your one-stop destination to practice healthy eating habits and maintaining perfect exercising habits.</p>
                 <button className="btn">explore now</button>
             </div>
             <div className="col gallery">
