@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCheck } from "@fortawesome/free-solid-svg-icons"
-
+import Footer from "../components/Footer"
 import { useState, useEffect } from "react"
 
 export default function Settings(){
@@ -167,7 +167,7 @@ export default function Settings(){
                     ))}
                 </div>
             </div>
-            
+            {/* <Footer/> */}
         </div>
     )
 }

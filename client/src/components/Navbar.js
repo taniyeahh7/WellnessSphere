@@ -21,7 +21,18 @@ export default function Navbar(){
             name:"Settings",
             path:"/settings",
             icon:faCog
+        },
+        {
+            name:"Login",
+            path:"/login",
+            icon:faCog
+        },
+        {
+            name:"Signup",
+            path:"/signup",
+            icon:faCog
         }
+
     ]
 
     // function closeSidebar(){
@@ -33,9 +44,10 @@ export default function Navbar(){
             <div className="navbar container">
                 <Link to="/" className="logo">W<span>ellness</span>Sphere</Link>
                 <div className="nav-links">
-                    {/* <a href="#!">Home</a>
-                    <a href="#!">Recipes</a>
-                    <a href="#!">Settings</a> */}
+                    {/* <a href="/">Home</a>
+                    <a href="/recipes">Recipes</a>
+                    <a href="/settings">Settings</a>
+                    <a href = "/login">Login</a> */}
                     {links.map(link=>(
                         <Link to={link.path} key={link.name}>{link.name}</Link>
                     ))}

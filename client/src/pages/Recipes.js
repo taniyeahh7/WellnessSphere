@@ -2,6 +2,7 @@
 // import { faSearch } from "@fortawesome/free-solid-svg-icons"
 import PreviousSearches from "../components/PreviousSearches"
 import RecipeCard from "../components/RecipeCard"
+import Footer from "../components/Footer"
 
 export default function Recipes(){
     const recipes = [
@@ -61,7 +62,7 @@ export default function Recipes(){
             authorImg: "/img/top-chiefs/img_3.jpg",
         },
         {
-            title: "Mutton Biriyani",
+            title: "Mutton Biryani",
             image: "/img/gallery/img_6.jpg",
             authorImg: "/img/top-chiefs/img_5.jpg",
         }
@@ -76,6 +77,7 @@ export default function Recipes(){
                     <RecipeCard key = {index} recipe = {recipe} />
                 ))}
             </div>
+            {/* <Footer/> */}
         </div>
     )
 }

@@ -10,7 +10,7 @@ export default function RecipeCard({recipe}){
                 <div className="recipe-card-info">
                     <img className="auther-img" src={recipe.authorImg} alt=""/>
                     <p className="recipe-title">{recipe.title}</p>
-                    <p className="recipe-desc">Description</p>
+                    {/* <p className="recipe-desc">Description</p> */}
                     <a className="view-btn" href="#!"></a>
                 </div>
             </div>
