@@ -17,7 +17,7 @@ export default function Signup(){
                     <div class="txt_field">
                         <input type="text" required /> 
                         <span></span>
-                        <label>Have any of the following health conditions?</label>
+                        <label>Any disorders?</label>
                     </div>
                     
                     <div>
@@ -46,7 +46,7 @@ export default function Signup(){
                         <label>Confirm Password</label>
                     </div>
                     <div class="pass">Forgot Password?</div>
-                        <input type="submit" value="Sign Up" />
+                        <input type="submit" value="Login" />
                     <div class="signup_link">
                         Already a member? <a href="./login">Sign In</a>
                     </div>
@@ -56,5 +56,3 @@ export default function Signup(){
         </div>
     )
 }
-
-

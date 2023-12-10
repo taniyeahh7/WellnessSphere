@@ -1,27 +1,18 @@
-const mongoose = require("mongoose"); // Erase if already required
-const bcrypt = require("bcrypt");
-const crypto = require("crypto");
+import mongoose from "mongoose";
 
-// Declare the Schema of the Mongo model
-var userSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
 	{
-		firstname: {
+		username: {
 			type: String,
 			required: true,
 			unique: true,
-			index: true,
-		},
-		lastname: {
-			type: String,
-			required: true,
-			index: true,
 		},
 		email: {
 			type: String,
 			required: true,
 			unique: true,
 		},
-		mobile: {
+		phone: {
 			type: String,
 			required: true,
 			unique: true,
@@ -30,51 +21,15 @@ var userSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
-		role: {
+		avatar: {
 			type: String,
-			default: "user",
+			default:
+				"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
 		},
-		isBlocked: {
-			type: Boolean,
-			default: false,
-		},
-		refreshToken: {
-			type: String,
-		},
-		passwordChangedAt: Date,
-		passwordResetToken: String,
-		passwordResetExpires: Date,
 	},
-	{
-		timestamps: true, // Enable automatic timestamps
-	}
+	{ timestamps: true }
 );
 
-//encrypts the password after entry is saved
-userSchema.pre("save", async function (next) {
-	if (!this.isModified("password")) {
-		next();
-	}
-	const salt = bcrypt.genSaltSync(10);
-	this.password = await bcrypt.hash(this.password, salt);
-	next();
-});
+const User = mongoose.model("User", userSchema);
 
-//method to match passwords
-userSchema.methods.isPasswordMatched = async function (enteredPassword) {
-	return await bcrypt.compare(enteredPassword, this.password);
-};
-
-//method to create PasswordResetToken
-userSchema.methods.createPasswordResetToken = async function () {
-	const resetToken = crypto.randomBytes(32).toString("hex");
-	this.passwordResetToken = crypto
-		.createHash("sha256")
-		.update(resetToken)
-		.digest("hex");
-	this.passwordResetExpires = Date.now() + 60 * 10000; //10 mins
-	return resetToken;
-};
-
-//Export the model
-module.exports = mongoose.model("User", userSchema);
+export default User;
