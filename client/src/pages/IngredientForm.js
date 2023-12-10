@@ -16,7 +16,7 @@ export default function Login(){
                         <span></span>
                         <label>Ingredients not suitable to use e.g. Sugar, Peanuts</label>
                     </div>
-                        <Link to="/choice"><input type="submit" value="Submit" /></Link>
+                        <Link to="/filterrecipe"><input type="submit" value="Submit" /></Link>
                     <div class="signup_link">
                         {/* Not a member? <a href="./signup">Signup</a> */}
                     </div>
