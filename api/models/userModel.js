@@ -17,6 +17,9 @@ const userSchema = new mongoose.Schema(
 			required: true,
 			unique: true,
 		},
+		healthConditions: {
+			type: Array,
+		},
 		password: {
 			type: String,
 			required: true,
