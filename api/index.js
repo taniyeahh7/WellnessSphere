@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import path from "path";
 import userRouter from "./routes/userRoute.js";
 import authRouter from "./routes/authRoute.js";
+import healthConditionRouter from "./routes/healthCondRoute.js";
 
 dotenv.config();
 
@@ -29,6 +30,7 @@ app.listen(3000, () => {
 
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/healthCondition", healthConditionRouter);
 
 app.use(express.static(path.join(__dirname, "/client/dist")));
 
