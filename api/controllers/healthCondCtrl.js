@@ -60,14 +60,12 @@ export const getHealthCondition = async (req, res, next) => {
 // Function to fetch all listings
 export const getAllHealthConditions = async (req, res, next) => {
 	try {
-		const startIndex = parseInt(req.query.startIndex) || 0;
 		const sort = req.query.sort || "createdAt";
 		const order = req.query.order || "desc";
 
-		const healthConditions = await HealthCondition.find({})
-			.sort({ [sort]: order })
-			.limit(limit)
-			.skip(startIndex);
+		const healthConditions = await HealthCondition.find({}).sort({
+			[sort]: order,
+		});
 
 		return res.status(200).json(healthConditions);
 	} catch (error) {

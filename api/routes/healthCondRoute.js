@@ -10,10 +10,10 @@ import { verifyToken } from "../utils/verifyUser.js";
 
 const router = express.Router();
 
-router.post("/create", verifyToken, createHealthCondition);
-router.delete("/delete/:id", verifyToken, deleteHealthCondition);
-router.post("/update/:id", verifyToken, updateHealthCondition);
+router.post("/create", createHealthCondition);
+router.delete("/delete/:id", deleteHealthCondition);
+router.post("/update/:id", updateHealthCondition);
 router.get("/get/:id", getHealthCondition);
-router.get("/get", getAllHealthConditions);
+router.get("/getAll", getAllHealthConditions);
 
 export default router;
