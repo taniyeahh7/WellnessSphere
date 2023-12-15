@@ -19,9 +19,9 @@ const healthConditionSchema = new mongoose.Schema(
 	{ timestamps: true }
 );
 
-const healthCondition = mongoose.model(
+const HealthCondition = mongoose.model(
 	"healthCondition",
 	healthConditionSchema
 );
 
-export default healthCondition;
+export default HealthCondition;
