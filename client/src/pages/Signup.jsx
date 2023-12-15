@@ -8,8 +8,7 @@ export default function Signup() {
 	const [ShowHealthConditionsError, setShowHealthConditionsError] =
 		useState(false);
 	const [healthConditionsArray, setHealthConditionsArray] = useState([
-		{ title: "ara" },
-		{ title: "aba" },
+		{ title: "Loading... Please refresh if this continues" },
 	]);
 	const navigate = useNavigate();
 
