@@ -1,5 +1,6 @@
 import bcryptjs from "bcryptjs";
 import User from "../models/userModel.js";
+import HealthCondition from "../models/healthCondModel.js";
 import { errorHandler } from "../utils/error.js";
 
 export const test = (req, res) => {
@@ -54,7 +55,7 @@ export const deleteUser = async (req, res, next) => {
 export const getUserHealthConditions = async (req, res, next) => {
 	if (req.user.id === req.params.id) {
 		try {
-			const conditions = await HealthConditions.find({
+			const conditions = await HealthCondition.find({
 				userRef: req.params.id,
 			});
 			res.status(200).json(conditions);
@@ -62,7 +63,9 @@ export const getUserHealthConditions = async (req, res, next) => {
 			next(error);
 		}
 	} else {
-		return next(errorHandler(401, "You can only view your own listings!"));
+		return next(
+			errorHandler(401, "You can only view your own health conditions!")
+		);
 	}
 };
 
