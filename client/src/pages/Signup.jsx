@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
-	const [formData, setFormData] = useState({});
+	const [formData, setFormData] = useState({
+		healthConditions: [],
+	});
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
 	const [ShowHealthConditionsError, setShowHealthConditionsError] =
@@ -10,9 +12,6 @@ export default function Signup() {
 	const [healthConditionsArray, setHealthConditionsArray] = useState([
 		{ title: "Loading... Please refresh if this continues" },
 	]);
-	const [userHealthConditionsArray, setUserHealthConditionsArray] = useState(
-		[]
-	);
 	const navigate = useNavigate();
 
 	//function to show the health conditions
@@ -39,10 +38,24 @@ export default function Signup() {
 
 	//function to handle change in the form
 	const handleChange = (e) => {
-		console.log("Yep");
-		setFormData({
-			...formData,
-			[e.target.id]: e.target.value,
+		const { id, value, type, checked } = e.target;
+		setFormData((prevFormData) => {
+			// For checkboxes, update the healthConditions array
+			if (type === "checkbox") {
+				return {
+					...prevFormData,
+					healthConditions: checked
+						? [...prevFormData.healthConditions, id]
+						: prevFormData.healthConditions.filter(
+								(condition) => condition !== id
+						  ),
+				};
+			}
+			// For other input fields, update based on the id
+			return {
+				...prevFormData,
+				[id]: value,
+			};
 		});
 	};
 
@@ -51,6 +64,7 @@ export default function Signup() {
 		e.preventDefault();
 		try {
 			setLoading(true);
+			console.log(formData);
 			const res = await fetch("/api/auth/register", {
 				method: "POST",
 				headers: {
@@ -67,7 +81,7 @@ export default function Signup() {
 			}
 			setLoading(false);
 			setError(null);
-			navigate("/sign-in");
+			navigate("/login");
 		} catch (error) {
 			setLoading(false);
 			setError(error.message);
@@ -101,7 +115,12 @@ export default function Signup() {
 					{healthConditionsArray.length > 0 ? (
 						healthConditionsArray.map((condition) => (
 							<div key={condition.title}>
-								<input type="checkbox" id={condition.title} />
+								<input
+									type="checkbox"
+									id={condition.title}
+									onChange={handleChange}
+									checked={formData.healthConditions.includes(condition.title)}
+								/>
 								<label htmlFor={condition.title}>{condition.title}</label>
 							</div>
 						))
