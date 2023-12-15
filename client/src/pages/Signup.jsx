@@ -1,20 +1,54 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
 	const [formData, setFormData] = useState({});
-	const [error, setError] = useState(null);
 	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(null);
+	const [ShowHealthConditionsError, setShowHealthConditionsError] =
+		useState(false);
+	const [healthConditionsArray, setHealthConditionsArray] = useState([
+		{ title: "ara" },
+		{ title: "aba" },
+	]);
 	const navigate = useNavigate();
+
+	//function to show the health conditions
+	const handleShowHealthConditions = async () => {
+		console.log("called hereeee");
+		try {
+			setShowHealthConditionsError(false);
+			const response = await fetch("/api/healthCondition/getAll", {
+				method: "GET",
+			});
+			const filtered_data = await response.json();
+			if (response.success === false) {
+				setShowHealthConditionsError(true);
+				return;
+			}
+			console.log(filtered_data);
+			setHealthConditionsArray(filtered_data);
+		} catch (error) {
+			setShowHealthConditionsError(true);
+		}
+	};
+	useEffect(() => {
+		console.log("called");
+		handleShowHealthConditions();
+	}, []);
+
+	//function to handle change in the form
 	const handleChange = (e) => {
+		console.log("Yep");
 		setFormData({
 			...formData,
 			[e.target.id]: e.target.value,
 		});
 	};
+
+	//function to submit the form
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log("called");
 		try {
 			setLoading(true);
 			const res = await fetch("/api/auth/register", {
@@ -39,7 +73,8 @@ export default function Signup() {
 			setError(error.message);
 		}
 	};
-	// front-end code
+
+	// ------- front-end code -------
 	return (
 		<div>
 			<div class="center">
@@ -60,24 +95,22 @@ export default function Signup() {
 						<span></span>
 						<label>Phone No.</label>
 					</div>
-
 					<div style={{ marginBottom: "4px" }}>
 						<label>Have any of the following health conditions:</label>
 					</div>
-					<div>
-						<input type="checkbox" id="scales" name="scales" />
-						<label for="scales">Diabetes</label>
-					</div>
-					<div>
-						<input type="checkbox" id="horns" name="horns" />
-						<label for="horns">Blood Pressure</label>
-					</div>
-					<div>
-						<input type="checkbox" id="horns" name="horns" />
-						<label for="horns">Color Blindness</label>
-					</div>
-
-					<div class="txt_field">
+					{healthConditionsArray.length > 0 ? (
+						healthConditionsArray.map((condition) => (
+							<div key={condition.title}>
+								<input type="checkbox" id={condition.title} />
+								<label htmlFor={condition.title}>{condition.title}</label>
+							</div>
+						))
+					) : (
+						<div style={{ marginBottom: "4px" }}>
+							<label>No health conditions available.</label>
+						</div>
+					)}
+					<div className="txt_field">
 						<input
 							type="password"
 							required
@@ -87,13 +120,13 @@ export default function Signup() {
 						<span></span>
 						<label>Password</label>
 					</div>
-					<div class="pass">Forgot Password?</div>
+					<div className="pass">Forgot Password?</div>
 					<input
 						disabled={loading}
 						type="submit"
 						value={loading ? "Loading..." : "Sign Up"}
 					/>
-					<div class="signup_link">
+					<div className="signup_link">
 						Already a member? <a href="./login">Sign In</a>
 					</div>
 				</form>
