@@ -3,8 +3,10 @@ import bcryptjs from "bcryptjs";
 import { errorHandler } from "../utils/error.js";
 import jwt from "jsonwebtoken";
 
+// function to register users
 export const register = async (req, res, next) => {
 	const { username, email, phone, healthConditions, password } = req.body;
+	//encrypt password for privacy
 	const hashedPassword = bcryptjs.hashSync(password, 10);
 	const newUser = new User({
 		username,
@@ -21,6 +23,7 @@ export const register = async (req, res, next) => {
 	}
 };
 
+// function to login the user
 export const signin = async (req, res, next) => {
 	const { username, password } = req.body;
 	try {
@@ -43,6 +46,7 @@ export const signin = async (req, res, next) => {
 	}
 };
 
+// function to support firebase authentication
 export const google = async (req, res, next) => {
 	try {
 		const user = await User.findOne({ email: req.body.email });
@@ -80,6 +84,7 @@ export const google = async (req, res, next) => {
 	}
 };
 
+// function to sign out the user
 export const signOut = async (req, res, next) => {
 	try {
 		res.clearCookie("access_token");

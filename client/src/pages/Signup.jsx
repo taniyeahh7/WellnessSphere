@@ -10,11 +10,13 @@ export default function Signup() {
 	const [healthConditionsArray, setHealthConditionsArray] = useState([
 		{ title: "Loading... Please refresh if this continues" },
 	]);
+	const [userHealthConditionsArray, setUserHealthConditionsArray] = useState(
+		[]
+	);
 	const navigate = useNavigate();
 
 	//function to show the health conditions
 	const handleShowHealthConditions = async () => {
-		console.log("called hereeee");
 		try {
 			setShowHealthConditionsError(false);
 			const response = await fetch("/api/healthCondition/getAll", {
@@ -32,7 +34,6 @@ export default function Signup() {
 		}
 	};
 	useEffect(() => {
-		console.log("called");
 		handleShowHealthConditions();
 	}, []);
 

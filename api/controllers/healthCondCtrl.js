@@ -1,6 +1,7 @@
 import HealthCondition from "../models/healthCondModel.js";
 import { errorHandler } from "../utils/error.js";
 
+//function to create health condition
 export const createHealthCondition = async (req, res, next) => {
 	try {
 		const healthCondition = await HealthCondition.create(req.body);
@@ -10,6 +11,7 @@ export const createHealthCondition = async (req, res, next) => {
 	}
 };
 
+//function to delete health condition
 export const deleteHealthCondition = async (req, res, next) => {
 	const healthCondition = await HealthCondition.findById(req.params.id);
 	if (!healthCondition) {
@@ -28,6 +30,7 @@ export const deleteHealthCondition = async (req, res, next) => {
 	}
 };
 
+//function to update health condition
 export const updateHealthCondition = async (req, res, next) => {
 	const healthCondition = await HealthCondition.findById(req.params.id);
 	if (!healthCondition) {
@@ -45,6 +48,7 @@ export const updateHealthCondition = async (req, res, next) => {
 	}
 };
 
+//function to get a specific health condition
 export const getHealthCondition = async (req, res, next) => {
 	try {
 		const healthCondition = await HealthCondition.findById(req.params.id);
@@ -57,7 +61,7 @@ export const getHealthCondition = async (req, res, next) => {
 	}
 };
 
-// Function to fetch all listings
+// function to fetch all health conditions
 export const getAllHealthConditions = async (req, res, next) => {
 	try {
 		const sort = req.query.sort || "createdAt";
