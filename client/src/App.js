@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar.js";
 import Home from "./pages/Home.js";
 import Recipes from "./pages/Recipes.js";
 import Settings from "./pages/Settings.js";
-import Login from "./pages/Login.js";
+import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import Choice from "./pages/Choice.js";
 import ExerciseChoice from "./pages/ExerciseChoice.js";
