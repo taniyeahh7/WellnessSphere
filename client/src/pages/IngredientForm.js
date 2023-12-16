@@ -1,6 +1,41 @@
 import { Link } from "react-router-dom"
+import { useState } from "react"
 
 export default function Login(){
+
+    const[ingredients, setIngredients] = useState("");
+    const[unsuitableIngre, setUnsuitableIngre] = useState("");
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const formData = {
+            input_ingre: ingredients,
+            cannot_have: unsuitableIngre,
+        };
+   
+
+    try{
+        const response = await fetch("http://127.0.0.1:5000",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        });
+
+        if(response.ok) {
+            const data = await response.json();
+            console.log(data);
+        } else {
+            console.error("Server responded with an error");
+        }
+    }
+    catch(error) {
+        console.error("Error sending request to the server:", error);
+    }
+    };
+
     return(
         <div>
             <div class="center">
