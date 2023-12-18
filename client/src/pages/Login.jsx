@@ -40,7 +40,7 @@ export default function Login() {
 				return;
 			}
 			dispatch(signInSuccess(data));
-			navigate("/choice");
+			navigate("/");
 		} catch (error) {
 			dispatch(signInFailure(error.message));
 		}
@@ -72,8 +72,7 @@ export default function Login() {
 						value={loading ? "Loading..." : "Login"}
 					/>
 				</form>
-
-				<div>{error && <p>{error}</p>}</div>
+				{error && <p>{error}</p>}
 				<Link to="/signup">
 					<div class="signup_link">
 						Not a member? <a>Signup</a>
