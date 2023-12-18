@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
+
 export default function ImproveSkill() {
 	const list = [
 		"Learn new exciting recipes",
 		"Discover deficiency management",
 		"Get customised recipes",
-		"Forget all fitness trainer tantrums",
 		"Exercise with maximising benefits",
 		"Get sole attention of our trainer",
 	];
@@ -20,7 +21,9 @@ export default function ImproveSkill() {
 						{item}
 					</p>
 				))}
-				<button className="btn">Signup now</button>
+				<Link to="/signup">
+					<button className="btn">Signup Now</button>
+				</Link>
 			</div>
 		</div>
 	);

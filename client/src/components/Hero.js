@@ -1,4 +1,5 @@
 import CustomImage from "./CustomImage.js";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
 	const images = [
@@ -16,12 +17,14 @@ export default function Hero() {
 	return (
 		<div className="section hero">
 			<div className="col typography">
-				<h1 className="title">What are we about</h1>
+				<h1 className="title">What are we about?</h1>
 				<p className="info">
 					Wellness Sphere is your one-stop destination to practice healthy
 					eating habits and maintaining perfect exercising habits.
 				</p>
-				<button className="btn">explore now</button>
+				<Link to="/recipes">
+					<button className="btn">explore now</button>
+				</Link>
 			</div>
 			<div className="col gallery">
 				{images.map((src, index) => (
