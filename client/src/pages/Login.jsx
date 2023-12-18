@@ -1,11 +1,17 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+	signInStart,
+	signInSuccess,
+	signInFailure,
+} from "../redux/user/userSlice";
 
 export default function Login() {
 	const [formData, setFormData] = useState({});
-	const [error, setError] = useState(null);
-	const [loading, setLoading] = useState(false);
+	const { loading, error } = useSelector((state) => state.user);
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	//function to handle changes in the form
 	const handleChange = (e) => {
@@ -19,7 +25,7 @@ export default function Login() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			setLoading(true);
+			dispatch(signInStart());
 			const res = await fetch("/api/auth/sign-in", {
 				method: "POST",
 				headers: {
@@ -30,16 +36,13 @@ export default function Login() {
 			const data = await res.json();
 			console.log(data);
 			if (data.success === false) {
-				setLoading(false);
-				setError(data.message);
+				dispatch(signInFailure(data.message));
 				return;
 			}
-			setLoading(false);
-			setError(null);
+			dispatch(signInSuccess(data));
 			navigate("/choice");
 		} catch (error) {
-			setLoading(false);
-			setError(error.message);
+			dispatch(signInFailure(error.message));
 		}
 	};
 	// ----- front-end code -----
@@ -68,10 +71,13 @@ export default function Login() {
 						type="submit"
 						value={loading ? "Loading..." : "Login"}
 					/>
-					<div class="signup_link">
-						Not a member? <a href="./signup">Signup</a>
-					</div>
 				</form>
+
+				<div>{error && <p>{error}</p>}</div>
+
+				<div class="signup_link">
+					Not a member? <a href="./signup">Signup</a>
+				</div>
 			</div>
 		</div>
 	);
