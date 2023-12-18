@@ -6,10 +6,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "nodemon api/index.js",
-		"start": "npm i && nodemon api/index.js",
-		"build": "react-scripts build",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"start": "npm i && nodemon api/index.js"
 	},
 	"keywords": [],
 	"author": "",
