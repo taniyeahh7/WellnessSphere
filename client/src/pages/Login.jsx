@@ -40,7 +40,7 @@ export default function Login() {
 				return;
 			}
 			dispatch(signInSuccess(data));
-			navigate("/");
+			navigate("/choice");
 		} catch (error) {
 			dispatch(signInFailure(error.message));
 		}
@@ -73,11 +73,9 @@ export default function Login() {
 					/>
 				</form>
 				{error && <p>{error}</p>}
-				<Link to="/signup">
-					<div class="signup_link">
-						Not a member? <a>Signup</a>
-					</div>
-				</Link>
+				<div class="signup_link">
+					Not a member? <Link to="/signup">Signup</Link>
+				</div>
 			</div>
 		</div>
 	);

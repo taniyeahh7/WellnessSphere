@@ -146,7 +146,7 @@ export default function Signup() {
 						value={loading ? "Loading..." : "Sign Up"}
 					/>
 					<div className="signup_link">
-						Already a member? <Link to="/login">Sign In</Link>
+						Already a member? <Link to="/login">Login</Link>
 					</div>
 				</form>
 			</div>
