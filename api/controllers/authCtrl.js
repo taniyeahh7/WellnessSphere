@@ -5,13 +5,12 @@ import jwt from "jsonwebtoken";
 
 // function to register users
 export const register = async (req, res, next) => {
-	const { username, email, phone, healthConditions, password } = req.body;
+	const { username, email, healthConditions, password } = req.body;
 	//encrypt password for privacy
 	const hashedPassword = bcryptjs.hashSync(password, 10);
 	const newUser = new User({
 		username,
 		email,
-		phone,
 		healthConditions,
 		password: hashedPassword,
 	});
@@ -69,7 +68,6 @@ export const google = async (req, res, next) => {
 					Math.random().toString(36).slice(-4),
 				email: req.body.email,
 				password: hashedPassword,
-				avatar: req.body.photo,
 			});
 			await newUser.save();
 			const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);

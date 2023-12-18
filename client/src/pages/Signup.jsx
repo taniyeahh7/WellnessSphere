@@ -104,11 +104,6 @@ export default function Signup() {
 						<span></span>
 						<label>Email</label>
 					</div>
-					<div class="txt_field">
-						<input type="text" required id="phone" onChange={handleChange} />
-						<span></span>
-						<label>Phone No.</label>
-					</div>
 					<div style={{ marginBottom: "4px" }}>
 						<label>Have any of the following health conditions:</label>
 					</div>
