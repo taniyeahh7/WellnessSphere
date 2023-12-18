@@ -1,0 +1,26 @@
+.quote-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #f8f8f8;
+	padding: 20px;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.quote {
+	font-size: 16px;
+	color: #555;
+	margin-bottom: 10px;
+}
+
+.quote-icon {
+	color: #888;
+	margin: 0 5px;
+}
+
+.quote-author {
+	font-style: italic;
+	color: #777;
+	margin-top: 10px;
+}
