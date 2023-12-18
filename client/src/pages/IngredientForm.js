@@ -16,7 +16,7 @@ export default function Login(){
    
 
     try{
-        const response = await fetch("http://127.0.0.1:5000",{
+        const response = await fetch("/ingredientform",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export default function Login(){
                         <label>Ingredients available e.g. Milk, Flour, Vanilla</label>
                     </div>
                     <div class="txt_field">
-                        <input type="password" required />
+                        <input type="text" required />
                         <span></span>
                         <label>Ingredients not suitable to use e.g. Sugar, Peanuts</label>
                     </div>

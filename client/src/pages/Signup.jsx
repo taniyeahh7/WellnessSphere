@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Signup() {
 	const [formData, setFormData] = useState({
@@ -146,7 +147,7 @@ export default function Signup() {
 						value={loading ? "Loading..." : "Sign Up"}
 					/>
 					<div className="signup_link">
-						Already a member? <a href="./login">Sign In</a>
+						Already a member? <Link to="/login">Sign In</Link>
 					</div>
 				</form>
 			</div>

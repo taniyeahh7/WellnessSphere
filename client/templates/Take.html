@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Recommendations</title>
+</head>
+<body>
+    {% if top_recipes %}
+        <h1>Top Recipes:</h1>
+        <ul>
+            {% for recipe in top_recipes %}
+                <li>
+                    <h2>{{ recipe.name }}</h2>
+                    <p>Ingredients: {{ recipe.ingredients }}</p>
+                    <p>Time: {{ recipe.time }} mins</p>
+                    <p>Instructions: {{ recipe.instructions }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No recipes found based on your input.</p>
+    {% endif %}
+
+    <p>Input Ingredients: {{ input_ingredients }}</p>
+    <p>Cannot Have: {{ cannot_have }}</p>
+</body>
+</html>

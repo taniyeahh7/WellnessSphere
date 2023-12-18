@@ -21,7 +21,7 @@ export default function Login() {
 						<input type="submit" value="Login" />
 					</Link>
 					<div class="signup_link">
-						Not a member? <a href="./signup">Signup</a>
+						Not a member? <Link to="/signup">Signup</Link>
 					</div>
 				</form>
 			</div>

@@ -15,7 +15,7 @@ def filter_recipes(data, cannot_have):
         filtered_data = filtered_data[~filtered_data['Cleaned-Ingredients'].str.contains(ingredient.strip().lower())]
     return filtered_data
 
-@app.route('/ingredientform', methods=['GET', 'POST'])
+@app.route('/ingredientform', methods=['POST'])
 def index():
     if request.method == 'POST':
         input_ingredients = request.form.get('input_ingredients', '').split(',')
@@ -51,9 +51,9 @@ def index():
             }
             top_recipes.append(recipe_info)
 
-    #     return render_template('index.html', top_recipes=top_recipes, input_ingredients=input_ingredients_str, cannot_have=cannot_have_str)
+    #     return render_template('Take.html', top_recipes=top_recipes, input_ingredients=input_ingredients_str, cannot_have=cannot_have_str)
 
-    # return render_template('index.html', top_recipes=None, input_ingredients=None, cannot_have=None)
+    # return render_template('Take.html', top_recipes=None, input_ingredients=None, cannot_have=None)
     
         return jsonify({'top_recipes': top_recipes, 'input_ingredients': input_ingredients_str, 'cannot_have': cannot_have_str})
 
