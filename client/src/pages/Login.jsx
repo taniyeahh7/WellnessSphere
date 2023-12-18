@@ -74,10 +74,11 @@ export default function Login() {
 				</form>
 
 				<div>{error && <p>{error}</p>}</div>
-
-				<div class="signup_link">
-					Not a member? <a href="./signup">Signup</a>
-				</div>
+				<Link to="/signup">
+					<div class="signup_link">
+						Not a member? <a>Signup</a>
+					</div>
+				</Link>
 			</div>
 		</div>
 	);
