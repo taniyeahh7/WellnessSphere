@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import OAuth from "../components/OAuth";
 
 export default function Signup() {
 	const [formData, setFormData] = useState({
@@ -104,11 +105,6 @@ export default function Signup() {
 						<span></span>
 						<label>Email</label>
 					</div>
-					<div class="txt_field">
-						<input type="text" required id="phone" onChange={handleChange} />
-						<span></span>
-						<label>Phone No.</label>
-					</div>
 					<div style={{ marginBottom: "4px" }}>
 						<label>Have any of the following health conditions:</label>
 					</div>
@@ -145,10 +141,11 @@ export default function Signup() {
 						type="submit"
 						value={loading ? "Loading..." : "Sign Up"}
 					/>
-					<div className="signup_link">
-						Already a member? <Link to="/login">Sign In</Link>
-					</div>
 				</form>
+				<OAuth />
+				<div className="signup_link">
+					Already a member? <Link to="/login">Login</Link>
+				</div>
 			</div>
 		</div>
 	);

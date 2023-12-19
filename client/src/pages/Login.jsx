@@ -6,6 +6,7 @@ import {
 	signInSuccess,
 	signInFailure,
 } from "../redux/user/userSlice";
+import OAuth from "../components/OAuth";
 
 export default function Login() {
 	const [formData, setFormData] = useState({});
@@ -40,7 +41,7 @@ export default function Login() {
 				return;
 			}
 			dispatch(signInSuccess(data));
-			navigate("/");
+			navigate("/choice");
 		} catch (error) {
 			dispatch(signInFailure(error.message));
 		}
@@ -52,16 +53,16 @@ export default function Login() {
 				<h1>Login</h1>
 				<form onSubmit={handleSubmit}>
 					<div class="txt_field">
-						<input type="text" required id="username" onChange={handleChange} />
+						<input type="text" id="username" onChange={handleChange} required />
 						<span></span>
 						<label>Username</label>
 					</div>
 					<div class="txt_field">
 						<input
 							type="password"
-							required
 							id="password"
 							onChange={handleChange}
+							required
 						/>
 						<span></span>
 						<label>Password</label>
@@ -72,12 +73,11 @@ export default function Login() {
 						value={loading ? "Loading..." : "Login"}
 					/>
 				</form>
-				{error && <p>{error}</p>}
-				<Link to="/signup">
-					<div class="signup_link">
-						Not a member? <a>Signup</a>
-					</div>
-				</Link>
+				{error && <p class="signup_link">{error}</p>}
+				<OAuth />
+				<div class="signup_link">
+					Not a member? <Link to="/signup">Signup</Link>
+				</div>
 			</div>
 		</div>
 	);
