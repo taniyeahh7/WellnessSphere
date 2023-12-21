@@ -67,11 +67,14 @@ export default function Login() {
 						<span></span>
 						<label>Password</label>
 					</div>
-					<input
-						disabled={loading}
-						type="submit"
-						value={loading ? "Loading..." : "Login"}
-					/>
+					<Link to = "/choice">
+						<input
+							disabled={loading}
+							type="submit"
+							value={loading ? "Loading..." : "Login"}
+						/>
+					</Link>
+					
 				</form>
 				{error && <p class="signup_link">{error}</p>}
 				<OAuth />
