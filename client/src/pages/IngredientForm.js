@@ -8,6 +8,12 @@ export default function IngredientForm() {
         cannot_have: '',
     });
 
+    
+    useEffect(() => {
+      // Clear the form data when the component mounts
+        return () => setFormData({ input_ingredients: '', cannot_have: '' });
+    }, []);
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 

@@ -12,6 +12,7 @@ import Choice from "./pages/Choice.js";
 import ExerciseChoice from "./pages/ExerciseChoice.js";
 import IngredientForm from "./pages/IngredientForm.js";
 import FilterRecipe from "./pages/FilterRecipe.js";
+import TextRecipe from "./pages/TextRecipe.js"
 
 function App() {
 	return (
@@ -28,6 +29,8 @@ function App() {
 					<Route path="/exercisechoice" element={<ExerciseChoice />} />
 					<Route path="/ingredientform" element={<IngredientForm />} />
 					<Route path="/filterrecipe" element={<FilterRecipe />} />
+					<Route path="/filterrecipe/:id" element={<TextRecipe/>} />
+					
 				</Routes>
 			</div>
 		</Router>

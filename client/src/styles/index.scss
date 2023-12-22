@@ -73,6 +73,7 @@ img{
 @import "partials/section-quote";
 @import "partials/navbar";
 @import "partials/recipes-section";
+@import "partials/text-recipe";
 
 .options-container{
     box-shadow: 0 5px 10px var(--shadow-color);
@@ -340,6 +341,9 @@ input[type="submit"]:hover{
 .center label{
     color:#666666;
 }
+
+
+
 
 
 // .choice-card-container {
