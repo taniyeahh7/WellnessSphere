@@ -8,12 +8,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 app = Flask(__name__)
 CORS(app)
 
-# def get_user_limits():
-#     cannot_have = request.get_json()['cannot_have']
-#     print(cannot_have)
-#     # cannot_have = request.form.get('cannot_have', '').strip().lower().split(',')
-#     return cannot_have
-
 def filter_recipes(data, cannot_have):
     filtered_data = data.copy()
     for ingredient in cannot_have:
@@ -26,57 +20,63 @@ def convert_to_builtin_type(obj):
 
 @app.route('/api/ingredform',methods =['POST'])
 def index():
-    print("called server")
-    # if request.method == 'POST':
-    # print("raw request"+str(request))
-    # print(request.get_json())
-    request_json = request.get_json()
-    cannot_have = request_json['cannot_have']
-    input_ingredients = request_json['input_ingredients']
-    print(input_ingredients)
-    # input_ingredients = request.form.get('input_ingredients', '').split(',')
-    # cannot_have = get_user_limits()
-    unique_ingredients = set()
-    for i in data['Cleaned-Ingredients']:
-        for j in i.split(','):
-            unique_ingredients.add(j.strip())
-    
-    
+    if request.method == 'POST':
+        print("called server")
+        input_ingredients = request.form.getlist('input_ingredients')
+        print(input_ingredients)
+        cannot_have = request.form.getlist('cannot_have')
 
-    vectorizer = TfidfVectorizer(vocabulary=unique_ingredients)
-    ingredient_matrix = vectorizer.fit_transform(data['Cleaned-Ingredients'])
+        unique_ingredients = set()
+        for i in data['Cleaned-Ingredients']:
+            for j in i.split(','):
+                unique_ingredients.add(j.strip())        
 
-    input_ingredients_str = input_ingredients
-    input_ingredients_vector = vectorizer.transform([input_ingredients_str])
+        vectorizer = TfidfVectorizer(vocabulary=unique_ingredients)
+        ingredient_matrix = vectorizer.fit_transform(data['Cleaned-Ingredients'])
 
-    similarities = cosine_similarity(input_ingredients_vector, ingredient_matrix)
+        input_ingredients_str = ', '.join(input_ingredients)
+        input_ingredients_vector = vectorizer.transform([input_ingredients_str])
 
-    cannot_have_str = cannot_have
-    filtered_data = filter_recipes(data, cannot_have)
+        similarities = cosine_similarity(input_ingredients_vector, ingredient_matrix)
 
-    filtered_similarities = similarities[:, filtered_data.index]
+        cannot_have_str = ', '.join(cannot_have)
+        print("cannot have string",cannot_have_str)
+        filtered_data = filter_recipes(data, cannot_have)
 
-    top_6_index = filtered_similarities.argsort()[0][-6:][::-1]
+        filtered_similarities = similarities[:, filtered_data.index]
 
-    top_recipes = []
-    for i in top_6_index:
-        recipe_info = {
-            'name': filtered_data.iloc[i]['TranslatedRecipeName'],
-            'ingredients': filtered_data.iloc[i]['TranslatedIngredients'],
-            'time': filtered_data.iloc[i]['TotalTimeInMins'],
-            'instructions': filtered_data.iloc[i]['TranslatedInstructions']
-        }
-        top_recipes.append(recipe_info)
+        top_6_index = filtered_similarities.argsort()[0][-6:][::-1]
 
-#     return render_template('Take.html', top_recipes=top_recipes, input_ingredients=input_ingredients_str, cannot_have=cannot_have_str)
 
-# return render_template('Take.html', top_recipes=None, input_ingredients=None, cannot_have=None)
-    json_data = json.dumps(top_recipes, default=convert_to_builtin_type)
-    decoded_data = json.loads(json_data)
-    return jsonify({'input_ingredients': input_ingredients_str, 'cannot_have': cannot_have_str, 'top_recipes': decoded_data})
-        # return jsonify({"input_ingredients": input_ingredients})
+        top_recipes = []
+        for i in top_6_index:
+            recipe_info = {
+                'name': filtered_data.iloc[i]['TranslatedRecipeName'],
+                'ingredients': filtered_data.iloc[i]['TranslatedIngredients'],
+                'time': filtered_data.iloc[i]['TotalTimeInMins'],
+                'instructions': filtered_data.iloc[i]['TranslatedInstructions']
+            }
+            top_recipes.append(recipe_info)
 
-    # return jsonify({'error': 'Invalid request format'})
+        json_data = json.dumps(top_recipes, default=convert_to_builtin_type)
+        decoded_data = json.loads(json_data)
+        # return jsonify({'top_recipes': decoded_data})
+        # # return jsonify({'input_ingredients': input_ingredients_str, 'cannot_have': cannot_have_str, 'top_recipes': decoded_data})
+        
+        
+        # response = jsonify({'top_recipes': decoded_data})
+        # # Set Cache-Control header to prevent caching
+        # response.headers['Cache-Control'] = 'no-store'
+        
+        response = jsonify({'top_recipes': decoded_data})
+        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0'
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Expires'] = '0'
+        return response
+        # return response
+
+
+    return jsonify({'error': 'Invalid request format'})
  
 
 if __name__ == '__main__':

@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom"
-import { useState, useEffect } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { useState, useEffect, useMemo } from "react"
 
 export default function IngredientForm() {
-
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         input_ingredients: '',
         cannot_have: '',
@@ -11,22 +11,26 @@ export default function IngredientForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const response = await fetch("http://localhost:5000/api/ingredform",{
+        const response = await fetch(`http://localhost:5000/api/ingredform?timestamp=${new Date().getTime()}`,{
             method: "POST",
             headers: {
                 "Content-Type" : "application/json",
             },
             body: JSON.stringify(formData),
         });
-        // console.log(formData.input_ingredients)
         if(response.status == 200){
             const serverResponse = await response.json();
-            console.log(serverResponse)
             console.log(serverResponse.top_recipes)
+            navigate("/filterrecipe", {state: serverResponse})
         } else {
             console.log("not working");
         }
     }
+
+    // useEffect(() => {
+    //   // Clear the form data when the component mounts
+    //     return () => setFormData({ input_ingredients: '', cannot_have: '' });
+    // }, []);
 
     const handleChange = (e) => {
 		setFormData({
