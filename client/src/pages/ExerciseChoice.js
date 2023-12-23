@@ -18,7 +18,7 @@ export default function ExerciseChoice(){
             image: "/img/gallery/img-squat.png",
             authorImg: "/img/top-chiefs/img-exercise-icon.jpg  ",
         }
-    ].sort(() => Math.random() - 0.5)
+    ]
 
     return (
         <div className="recipes-container">
@@ -26,9 +26,9 @@ export default function ExerciseChoice(){
                     <RecipeCard key = {index} recipe = {recipe} />
                 ))} */}
 
-                <Link to="/"><RecipeCard key={0} recipe={recipes[0]} /></Link>
-                <Link to="/"><RecipeCard key={1} recipe={recipes[1]}/></Link>
-                <Link to="/"><RecipeCard key={2} recipe={recipes[2]}/></Link>
+                <Link to="/curl"><RecipeCard key={0} recipe={recipes[0]} /></Link>
+                <Link to="/curl"><RecipeCard key={1} recipe={recipes[1]}/></Link>
+                <Link to="/curl"><RecipeCard key={2} recipe={recipes[2]}/></Link>
         </div>
     )
 }

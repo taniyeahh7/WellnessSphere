@@ -47,7 +47,7 @@ export default function IngredientForm() {
 
 
   return (
-    <div>
+    <div className="center">
       <h1>Ingredients</h1>
       <form onSubmit={handleSubmit}>
         <div className="txt_field">
@@ -71,6 +71,8 @@ export default function IngredientForm() {
           <label>Ingredients not suitable to use e.g. Sugar, Peanuts</label>
         </div>
         <input type="submit" value="Submit" />
+        <div class="signup_link">
+				</div>
       </form>
     </div>
   );

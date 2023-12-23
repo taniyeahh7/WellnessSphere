@@ -13,6 +13,7 @@ import ExerciseChoice from "./pages/ExerciseChoice.js";
 import IngredientForm from "./pages/IngredientForm.js";
 import FilterRecipe from "./pages/FilterRecipe.js";
 import TextRecipe from "./pages/TextRecipe.js"
+import Curl from "./pages/Curl.js"
 
 function App() {
 	return (
@@ -30,7 +31,7 @@ function App() {
 					<Route path="/ingredientform" element={<IngredientForm />} />
 					<Route path="/filterrecipe" element={<FilterRecipe />} />
 					<Route path="/filterrecipe/:id" element={<TextRecipe/>} />
-					
+					<Route path="/curl" element={<Curl/>}/>
 				</Routes>
 			</div>
 		</Router>
