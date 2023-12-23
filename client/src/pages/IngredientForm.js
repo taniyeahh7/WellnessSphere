@@ -1,5 +1,5 @@
-import { Link, useNavigate } from "react-router-dom"
-import { useState, useEffect, useMemo } from "react"
+import { useNavigate } from "react-router-dom"
+import { useState, useEffect} from "react"
 
 export default function IngredientForm() {
     const navigate = useNavigate();
@@ -24,7 +24,7 @@ export default function IngredientForm() {
             },
             body: JSON.stringify(formData),
         });
-        if(response.status == 200){
+        if(response.status === 200){
             const serverResponse = await response.json();
             console.log(serverResponse.top_recipes)
             navigate("/filterrecipe", {state: serverResponse})
@@ -38,12 +38,12 @@ export default function IngredientForm() {
     //     return () => setFormData({ input_ingredients: '', cannot_have: '' });
     // }, []);
 
-    const handleChange = (e) => {
-		setFormData({
-			...formData,
-			[e.target.id]: e.target.value,
-		});
-	};
+  //   const handleChange = (e) => {
+	// 	setFormData({
+	// 		...formData,
+	// 		[e.target.id]: e.target.value,
+	// 	});
+	// };
 
 
   return (
