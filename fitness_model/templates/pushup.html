@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Push-up Counter</title>
+</head>
+<body>
+    <h1>Push-up Counter</h1>
+    <p>Count: {{ count }}</p>
+    <p>Feedback: {{ feedback }}</p>
+
+    <img src="http://127.0.0.1:5000/pushup_feed" alt="Push-up Counter Feed" style="width: 640px; height: 480px;">
+    <button onclick="stopVideoFeed()">Stop Video Feed</button>
+
+    <script>
+        function stopVideoFeed() {
+            fetch('/stop_video_feed')
+                .then(response => console.log('Video feed has stopped hehe.'))
+                .catch(error => console.error('Error:', error));
+
+            location.reload(true);
+        }
+    </script>
+
+</body>
+</html>
