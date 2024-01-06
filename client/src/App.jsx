@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute";
 
 import Navbar from "./components/Navbar.jsx";
 // import ChefSection from "./components/ChefSection.js"; if want to include put in body also
@@ -24,10 +25,13 @@ function App() {
 					<Route path="/settings" element={<Settings />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/signup" element={<Signup />} />
-					<Route path="/choice" element={<Choice />} />
-					<Route path="/exercisechoice" element={<ExerciseChoice />} />
-					<Route path="/ingredientform" element={<IngredientForm />} />
-					<Route path="/filterrecipe" element={<FilterRecipe />} />
+
+					<Route element={<PrivateRoute />}>
+						<Route path="/choice" element={<Choice />} />
+						<Route path="/exercisechoice" element={<ExerciseChoice />} />
+						<Route path="/ingredientform" element={<IngredientForm />} />
+						<Route path="/filterrecipe" element={<FilterRecipe />} />
+					</Route>
 				</Routes>
 			</div>
 		</Router>

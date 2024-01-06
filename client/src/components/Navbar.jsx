@@ -1,11 +1,9 @@
-import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { faHome, faList, faCog } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	signOutUserStart,
 	deleteUserFailure,
-	deleteUserStart,
 	deleteUserSuccess,
 } from "../redux/user/userSlice.js";
 
