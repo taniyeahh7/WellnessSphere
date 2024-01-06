@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Navbar from "./components/Navbar.js";
+import Navbar from "./components/Navbar.jsx";
 // import ChefSection from "./components/ChefSection.js"; if want to include put in body also
 // import Footer from "./components/Footer.js";
 import Home from "./pages/Home.js";
