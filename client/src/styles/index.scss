@@ -238,6 +238,7 @@ img{
 // //   overflow: hidden;
 // }
 .center{
+  margin-top: 1rem;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -365,8 +366,26 @@ border-color: var(--primary-color);
 transition: .5s;
 }
 
+//////////////////////////////////////////////////////////
+/// 
 
 
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid transparent;
+    border-radius: .25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
+}
+.me-2 {
+    margin-right: .5rem!important;
+}
 // .choice-card-container {
 //     display: flex;
 //     justify-content: center;

@@ -14,6 +14,7 @@ import IngredientForm from "./pages/IngredientForm.js";
 import FilterRecipe from "./pages/FilterRecipe.js";
 import TextRecipe from "./pages/TextRecipe.js"
 import Curl from "./pages/Curl.js"
+import Profile from "./pages/Profile.js";
 
 function App() {
 	return (
@@ -32,6 +33,7 @@ function App() {
 					<Route path="/filterrecipe" element={<FilterRecipe />} />
 					<Route path="/filterrecipe/:id" element={<TextRecipe/>} />
 					<Route path="/curl" element={<Curl/>}/>
+					<Route path="/profile" element={<Profile/>}/>
 				</Routes>
 			</div>
 		</Router>

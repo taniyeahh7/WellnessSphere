@@ -31,8 +31,12 @@ export default function Navbar(){
             name:"Signup",
             path:"/signup",
             icon:faCog
+        },
+        {
+            name:"Profile",
+            path:"/profile",
+            icon:faCog
         }
-
     ]
 
     // function closeSidebar(){
