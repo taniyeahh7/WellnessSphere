@@ -95,7 +95,7 @@ def generate_pushup_frames():
 
 @app.route('/')
 def pushup_counter_page():
-    return render_template('pushup.html', count=int(count), feedback=feedback)
+    return render_template('pushup.html', feedback=feedback)
 
 @app.route('/pushup_feed')
 def pushup_feed():

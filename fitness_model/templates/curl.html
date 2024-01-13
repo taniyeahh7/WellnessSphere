@@ -6,12 +6,12 @@
     <title>Camera Feed Tee-Hee</title>
 </head>
 <body>
-    <img src="http://127.0.0.1:5000/video_feed" width="640" height="480">
+    <img src="http://127.0.0.1:5000/curl_feed" width="640" height="480">
     <button onclick="stopVideoFeed()">Stop Video Feed</button>
     
     <script>
         function stopVideoFeed() {
-            fetch('/stop_video_feed')
+            fetch('/stop_curl_feed')
                 .then(response => console.log('Video feed has stopped hehe.'))
                 .catch(error => console.error('Error:', error));
 
