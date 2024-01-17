@@ -16,18 +16,19 @@ export default function IngredientForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
-        const response = await fetch(`http://localhost:5000/api/ingredform?timestamp=${new Date().getTime()}`,{
+        console.log(formData);
+        const response = await fetch("http://localhost:5000/api/ingredform",{
             method: "POST",
             headers: {
                 "Content-Type" : "application/json",
             },
-            body: JSON.stringify(formData),
+            body: JSON.stringify(formData)
         });
         if(response.status === 200){
             const serverResponse = await response.json();
             console.log(serverResponse.top_recipes)
             navigate("/filterrecipe", {state: serverResponse})
+            return serverResponse
         } else {
             console.log("not working");
         }
@@ -49,7 +50,7 @@ export default function IngredientForm() {
   return (
     <div className="center">
       <h1>Ingredients</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} autoComplete="off">
         <div className="txt_field">
           <input
             type="text"
