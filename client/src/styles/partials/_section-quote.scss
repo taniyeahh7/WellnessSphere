@@ -10,17 +10,17 @@
 
 .quote {
 	font-size: 16px;
-	color: #939393;
+	color: var(--text-color);
 	margin-bottom: 10px;
 }
 
 .quote-icon {
-	color: #888;
+	color: var(--primary-color);
 	margin: 0 5px;
 }
 
 .quote-author {
 	font-style: italic;
-	color: #777;
+	color: var(--primary-color);
 	margin-top: 10px;
 }

@@ -15,7 +15,7 @@ export default function ImproveSkill() {
 				<img src="/img/gallery/img_10.jpg" alt="" />
 			</div>
 			<div className="col typography">
-				<h1 className="title">Improve Your Cullinary Skills</h1>
+				<h1 className="title">Improve Your Culinary Skills</h1>
 				{list.map((item, index) => (
 					<p className="skill-item" key={index}>
 						{item}
