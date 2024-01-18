@@ -7,7 +7,7 @@ export default function Curl(){
     // const [videoFeedStopped, setVideoFeedStopped] = useState(false);
 
     const stopVideoFeed = () => {
-        fetch('http://localhost:5000/curl/api/stop_video_feed')
+        fetch('http://localhost:5000/api/stop_curl_feed')
           .then(() => {
             console.log('Video feed has stopped hehe.');
             // setVideoFeedStopped(true);
@@ -19,7 +19,7 @@ export default function Curl(){
 
     return(
         <div className="stream-div">
-            <img src="http://localhost:5000/curl/api/video_feed" alt="curl video window" width="690" height="480" className="stream-window"/>
+            <img src="http://localhost:5000/api/curl_feed" alt="curl video window" width="690" height="480" className="stream-window"/>
             <button onClick={stopVideoFeed} className="google-stop-stream-btn">Stop Video Feed</button>
         </div>
     )

@@ -416,6 +416,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import cv2
 import mediapipe as mp
 import numpy as np
+import PoseModule as pm
 
 app = Flask(__name__)
 CORS(app)
@@ -518,27 +519,99 @@ def index():
  
  ##### virtual trainer #####
  
-def process_image(frame):
-    global counter, stage
 
-    # Recolor image to RGB
+# push-up counter variables
+pushup_count = 0
+pushup_direction = 0
+pushup_form = 0
+pushup_feedback = "Fix Form"
+video_capture_pushup = None
+
+# curl counter variables
+curl_counter = 0
+curl_stage = None
+video_capture_curl = None
+
+# create PoseDetector instance for push-up
+pushup_detector = pm.poseDetector()
+
+# create Mediapipe Pose instance for curl
+curl_pose = mp.solutions.pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5)
+
+# function to detect push-ups in each frame
+def detect_pushups(frame):
+    global pushup_count, pushup_direction, pushup_form, pushup_feedback
+
+    frame = pushup_detector.findPose(frame, False)
+
+    lmList = pushup_detector.findPosition(frame, False)
+    if len(lmList) != 0:
+        elbow = pushup_detector.findAngle(frame, 11, 13, 15)
+        shoulder = pushup_detector.findAngle(frame, 13, 11, 23)
+        hip = pushup_detector.findAngle(frame, 11, 23, 25)
+
+        per = np.interp(elbow, (90, 160), (0, 100))
+        bar = np.interp(elbow, (90, 160), (380, 50))
+
+        if elbow > 160 and shoulder > 40 and hip > 160:
+            pushup_form = 1
+
+        if pushup_form == 1:
+            if per == 0:
+                if elbow <= 90 and hip > 160:
+                    pushup_feedback = "Up"
+                    if pushup_direction == 0:
+                        pushup_count += 0.5
+                        pushup_direction = 1
+                else:
+                    pushup_feedback = "Fix Form"
+
+            if per == 100:
+                if elbow > 160 and shoulder > 40 and hip > 160:
+                    pushup_feedback = "Down"
+                    if pushup_direction == 1:
+                        pushup_count += 0.5
+                        pushup_direction = 0
+                else:
+                    pushup_feedback = "Fix Form"
+
+        if pushup_form == 1:
+            cv2.rectangle(frame, (580, 50), (600, 380), (0, 255, 0), 3)
+            cv2.rectangle(frame, (580, int(bar)), (600, 380), (0, 255, 0), cv2.FILLED)
+            cv2.putText(frame, f'{int(per)}%', (565, 430), cv2.FONT_HERSHEY_PLAIN, 2,
+                        (255, 0, 0), 2)
+
+        cv2.rectangle(frame, (0, 380), (100, 480), (0, 255, 0), cv2.FILLED)
+        cv2.putText(frame, str(int(pushup_count)), (25, 455), cv2.FONT_HERSHEY_PLAIN, 5,
+                    (255, 0, 0), 5)
+
+        cv2.rectangle(frame, (500, 0), (640, 40), (255, 255, 255), cv2.FILLED)
+        cv2.putText(frame, pushup_feedback, (500, 40), cv2.FONT_HERSHEY_PLAIN, 2,
+                    (0, 255, 0), 2)
+
+    return frame
+
+# function to process frames for curl counter
+def process_curl_image(frame):
+    global curl_counter, curl_stage
+
     image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     image.flags.writeable = False
 
-    # Makking the detection 
-    results = pose.process(image=image)
+    results = curl_pose.process(image=image)
 
-    # Recolor back to BGR
     image.flags.writeable = True
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
     try:
         landmarks = results.pose_landmarks.landmark
 
-        # Get coordinates
-        shoulder = [landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].x, landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].y]
-        elbow = [landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].x, landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].y]
-        wrist = [landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].x, landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].y]
+        shoulder = [landmarks[mp.solutions.pose.PoseLandmark.RIGHT_SHOULDER.value].x,
+                    landmarks[mp.solutions.pose.PoseLandmark.RIGHT_SHOULDER.value].y]
+        elbow = [landmarks[mp.solutions.pose.PoseLandmark.RIGHT_ELBOW.value].x,
+                 landmarks[mp.solutions.pose.PoseLandmark.RIGHT_ELBOW.value].y]
+        wrist = [landmarks[mp.solutions.pose.PoseLandmark.RIGHT_WRIST.value].x,
+                 landmarks[mp.solutions.pose.PoseLandmark.RIGHT_WRIST.value].y]
 
         def Calculate_angle(a, b, c):
             a = np.array(a)  # first landmark - shoulder
@@ -550,61 +623,56 @@ def process_image(frame):
                 angle = 360 - angle
             return angle
 
-        # Calculate angle
         angle = Calculate_angle(shoulder, elbow, wrist)
-
-        # Visualize angle
-        cv2.putText(image, str(angle),
-                    tuple(np.multiply(elbow, [640, 480]).astype(int)),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA)
 
         # Curl Logic :)
         if angle > 160:
-            stage = "down"
-        if angle < 30 and stage == 'down':
-            stage = "up"
-            counter += 1
-            print(counter)
+            curl_stage = "down"
+        if angle < 30 and curl_stage == 'down':
+            curl_stage = "up"
+            curl_counter += 1
+            print(curl_counter)
     except:
         pass
 
-    # Render curl counter
-    # Setup status box
+
     cv2.rectangle(image, (0, 0), (225, 73), (245, 117, 16), -1)
 
-    # Rep data
     cv2.putText(image, 'REPS', (15, 12),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1, cv2.LINE_AA)
-    cv2.putText(image, str(counter),
+    cv2.putText(image, str(curl_counter),
                 (10, 60),
                 cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 255), 2, cv2.LINE_AA)
 
-    # Stage data
     cv2.putText(image, 'STAGE', (65, 12),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1, cv2.LINE_AA)
-    cv2.putText(image, stage,
+    cv2.putText(image, curl_stage,
                 (60, 60),
                 cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 255), 2, cv2.LINE_AA)
 
-    # Render detections
-    mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
-                               mp_drawing.DrawingSpec(color=(245, 117, 66), thickness=2, circle_radius=2),
-                               mp_drawing.DrawingSpec(color=(245, 66, 230), thickness=2, circle_radius=2)
-                               )
+    mp.solutions.drawing_utils.draw_landmarks(image, results.pose_landmarks,
+                                              mp.solutions.pose.POSE_CONNECTIONS,
+                                              mp.solutions.drawing_utils.DrawingSpec(
+                                                  color=(245, 117, 66), thickness=2, circle_radius=2),
+                                              mp.solutions.drawing_utils.DrawingSpec(
+                                                  color=(245, 66, 230), thickness=2, circle_radius=2)
+                                              )
 
     return image
 
-def generate_frames():
-    global video_capture
-    video_capture = cv2.VideoCapture(0)
+# function to generate frames for push-up counter ^_^
+def generate_pushup_frames():
+    global video_capture_pushup
 
-    while video_capture.isOpened():
-        ret, frame = video_capture.read()
+    video_capture_pushup = cv2.VideoCapture(0)
+
+    while video_capture_pushup.isOpened():
+        ret, frame = video_capture_pushup.read()
 
         if not ret:
             break
 
-        frame = process_image(frame)
+        frame = detect_pushups(frame)
 
         ret, buffer = cv2.imencode('.jpg', frame)
         frame = buffer.tobytes()
@@ -612,22 +680,74 @@ def generate_frames():
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
- 
-@app.route('/api/video_feed')
-def video_feed():
-    return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+# function to generate frames for curl counter ^_^
+def generate_curl_frames():
+    global video_capture_curl
+    video_capture_curl = cv2.VideoCapture(0)
 
-@app.route('/api/stop_video_feed')
-def stop_video_feed():
-    global video_capture, counter, stage
+    while video_capture_curl.isOpened():
+        ret, frame = video_capture_curl.read()
 
-    if video_capture is not None:
-        video_capture.release()
-        video_capture = None
+        if not ret:
+            break
+
+        frame = process_curl_image(frame)
+
+        ret, buffer = cv2.imencode('.jpg', frame)
+        frame = buffer.tobytes()
+
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+# route for push-up counter
+@app.route('/pushup_counter')
+def pushup_counter_page():
+    return render_template('pushup.html', count=int(pushup_count), feedback=pushup_feedback)
+
+# route for push-up counter video feed
+@app.route('/api/pushup_feed')
+def pushup_feed():
+    return Response(generate_pushup_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+# route for stopping push-up counter video feed :)
+@app.route('/api/stop_pushup_feed')
+def stop_pushup_feed():
+    global video_capture_pushup, pushup_count, pushup_direction, pushup_form, pushup_feedback
+
+    if video_capture_pushup is not None:
+        video_capture_pushup.release()
+        video_capture_pushup = None
+
+    pushup_count = 0
+    pushup_direction = 0
+    pushup_form = 0
+    pushup_feedback = "Fix Form"
+    return "stopped"
     
-    counter = 0
-    stage = None
- 
+
+# route for curl counter
+@app.route('/curl_counter')
+def curl_counter_page():
+    return render_template('curl.html', curl_count=curl_counter, curl_stage=curl_stage)
+
+# route for curl counter video feed
+@app.route('/api/curl_feed')
+def curl_feed():
+    return Response(generate_curl_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+# route for stopping curl counter video feed :)
+@app.route('/api/stop_curl_feed')
+def stop_curl_feed():
+    global video_capture_curl, curl_counter, curl_stage
+
+    if video_capture_curl is not None:
+        video_capture_curl.release()
+        video_capture_curl = None
+
+    curl_counter = 0
+    curl_stage = None
+    return "stopped"
+
 
 if __name__ == '__main__':
     data = pd.read_csv('Cleaned_Indian_Food_Dataset.csv', encoding='utf-8')

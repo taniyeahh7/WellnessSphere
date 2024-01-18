@@ -27,7 +27,7 @@ export default function ExerciseChoice(){
                 ))} */}
 
                 <Link to="/curl"><RecipeCard key={0} recipe={recipes[0]} /></Link>
-                <Link to="/curl"><RecipeCard key={1} recipe={recipes[1]}/></Link>
+                <Link to="/pushup"><RecipeCard key={1} recipe={recipes[1]}/></Link>
                 <Link to="/curl"><RecipeCard key={2} recipe={recipes[2]}/></Link>
         </div>
     )

@@ -15,6 +15,7 @@ import FilterRecipe from "./pages/FilterRecipe.js";
 import TextRecipe from "./pages/TextRecipe.js"
 import Curl from "./pages/Curl.js"
 import Profile from "./pages/Profile.js";
+import Pushup from "./pages/Pushup.js";
 
 function App() {
 	return (
@@ -34,6 +35,7 @@ function App() {
 					<Route path="/filterrecipe/:id" element={<TextRecipe/>} />
 					<Route path="/curl" element={<Curl/>}/>
 					<Route path="/profile" element={<Profile/>}/>
+					<Route path="/pushup" element={<Pushup/>}/>
 				</Routes>
 			</div>
 		</Router>
