@@ -30,6 +30,15 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+		<style>
+			.chat-bot {
+				position: fixed;
+				right: 20px;
+				bottom: 20px;
+				border: none;
+				z-index: 1000;
+			}
+		</style>
 		<title>React App</title>
 	</head>
 	<body>
@@ -46,10 +55,11 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
 		<iframe
-			width="350"
-			height="430"
+			class="chat-bot"
+			width="300"
+			height="400"
 			allow="microphone;"
-			src="--the chatbot link goes here--"
+			src="{{chatbot-link-goes-here}}"
 		></iframe>
 	</body>
 </html>
