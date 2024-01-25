@@ -13,7 +13,7 @@ export default function Login() {
 	const { loading, error } = useSelector((state) => state.user);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	
+
 	//function to handle changes in the form
 	const handleChange = (e) => {
 		setFormData({
@@ -72,7 +72,6 @@ export default function Login() {
 						type="submit"
 						value={loading ? "Loading..." : "Login"}
 					/>
-					
 				</form>
 				{error && <p class="signup_link">{error}</p>}
 				<OAuth />

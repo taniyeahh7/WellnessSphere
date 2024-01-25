@@ -751,4 +751,4 @@ def stop_curl_feed():
 
 if __name__ == '__main__':
     data = pd.read_csv('Cleaned_Indian_Food_Dataset.csv', encoding='utf-8')
-    app.run(host = '0.0.0.0', debug = True)
+    app.run(host = '0.0.0.0', debug = False)

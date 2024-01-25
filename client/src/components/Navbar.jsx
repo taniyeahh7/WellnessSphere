@@ -67,11 +67,11 @@ export default function Navbar() {
 			path: "/choice",
 			icon: faCog,
 		},
-        {
-            name:"Profile",
-            path:"/profile",
-            icon:faCog
-        }
+		{
+			name: "Profile",
+			path: "/profile",
+			icon: faCog,
+		},
 	];
 
 	// ----- front-end code -----
@@ -98,7 +98,7 @@ export default function Navbar() {
 									{link.name}
 								</Link>
 						  ))}
-					{currentUser && <span onClick={handleSignOut}>SIGN OUT</span>}
+					{currentUser && <span onClick={handleSignOut}>Sign out</span>}
 				</div>
 			</div>
 		</>
