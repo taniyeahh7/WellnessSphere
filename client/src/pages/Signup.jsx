@@ -93,7 +93,7 @@ export default function Signup() {
 	return (
 		<div>
 			<div class="center">
-				<h1>Sign Up</h1>
+				<h1 style={{ marginTop: "1rem" }}>Sign Up</h1>
 				<form onSubmit={handleSubmit}>
 					<div class="txt_field">
 						<input type="text" required id="username" onChange={handleChange} />

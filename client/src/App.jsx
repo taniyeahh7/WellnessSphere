@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar.js";
 // import ChefSection from "./components/ChefSection.js"; if want to include put in body also
 // import Footer from "./components/Footer.js";
+import PrivateRoute from "./components/PrivateRoute";
 import Home from "./pages/Home.js";
 import Recipes from "./pages/Recipes.js";
 import Settings from "./pages/Settings.js";
@@ -28,14 +29,17 @@ function App() {
 					<Route path="/settings" element={<Settings />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/signup" element={<Signup />} />
-					<Route path="/choice" element={<Choice />} />
-					<Route path="/exercisechoice" element={<ExerciseChoice />} />
-					<Route path="/ingredientform" element={<IngredientForm />} />
-					<Route path="/filterrecipe" element={<FilterRecipe />} />
-					<Route path="/filterrecipe/:id" element={<TextRecipe/>} />
-					<Route path="/curl" element={<Curl/>}/>
-					<Route path="/profile" element={<Profile/>}/>
-					<Route path="/pushup" element={<Pushup/>}/>
+
+					<Route element={<PrivateRoute />}>
+						<Route path="/choice" element={<Choice />} />
+						<Route path="/exercisechoice" element={<ExerciseChoice />} />
+						<Route path="/ingredientform" element={<IngredientForm />} />
+						<Route path="/filterrecipe" element={<FilterRecipe />} />
+						<Route path="/filterrecipe/:id" element={<TextRecipe/>} />
+						<Route path="/curl" element={<Curl/>}/>
+						<Route path="/profile" element={<Profile/>}/>
+						<Route path="/pushup" element={<Pushup/>}/>
+					</Route>
 				</Routes>
 			</div>
 		</Router>

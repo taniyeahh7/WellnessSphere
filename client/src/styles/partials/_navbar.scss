@@ -52,6 +52,36 @@
                     font-weight: bold;
             }
         }
+
+        span {
+			margin-left: 1em;
+			color: var(--text-light);
+			letter-spacing: 2px;
+			text-transform: uppercase;
+			position: relative;
+			font-size: 0.9em;
+			&::before {
+				content: "";
+				display: inline-block;
+				height: 3px;
+				width: 100%;
+				background-color: var(--primary-color);
+				position: absolute;
+				bottom: -5px;
+				left: 0;
+				transform: scaleX(0);
+				transition: getAnimationDuration(0.2s) ease-in-out;
+			}
+			&:hover {
+				&::before {
+					transform: scaleX(1);
+				}
+			}
+			&:active {
+				color: var(--primary-color);
+				font-weight: bold;
+			}
+		}
     }
     .sidebar-btn
     {
