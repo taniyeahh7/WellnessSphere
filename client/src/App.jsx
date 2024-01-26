@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar.jsx";
 // import Footer from "./components/Footer.js";
 import PrivateRoute from "./components/PrivateRoute";
 import Home from "./pages/Home.js";
-import Recipes from "./pages/Recipes.js";
+//import Recipes from "./pages/Recipes.js";
 import Settings from "./pages/Settings.js";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
@@ -25,11 +25,10 @@ function App() {
 			<div className="container main">
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="/recipes" element={<Recipes />} />
+					{/* <Route path="/recipes" element={<Recipes />} /> */}
 					<Route path="/settings" element={<Settings />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/signup" element={<Signup />} />
-
 					<Route element={<PrivateRoute />}>
 						<Route path="/choice" element={<Choice />} />
 						<Route path="/exercisechoice" element={<ExerciseChoice />} />
