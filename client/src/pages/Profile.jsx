@@ -96,7 +96,7 @@ export default function EditProfile() {
 		}
 	};
 
-	//function to delete user's account
+	//Function to delete user's account
 	const handleDeleteUser = async () => {
 		try {
 			dispatch(deleteUserStart());
