@@ -40,7 +40,7 @@ export default function OAuth() {
 			type="submit"
 			className="google-stop-stream-btn"
 		>
-			Continue with google
+			Continue with Google
 		</button>
 	);
 }
