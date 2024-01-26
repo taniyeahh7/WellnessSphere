@@ -32,6 +32,14 @@ export default function Navbar() {
 	//all the default links
 	const defaultLinks = [
 		{
+			name: "Settings",
+			path: "/settings",
+			icon: faCog,
+		},
+	];
+	//links to be displayed when user is not logged in
+	const loggedOutLinks = [
+		{
 			name: "Home",
 			path: "/",
 			icon: faHome,
@@ -41,14 +49,6 @@ export default function Navbar() {
 			path: "/recipes",
 			icon: faList,
 		},
-		{
-			name: "Settings",
-			path: "/settings",
-			icon: faCog,
-		},
-	];
-	//links to be displayed when user is not logged in
-	const loggedOutLinks = [
 		{
 			name: "Login",
 			path: "/login",
@@ -62,6 +62,11 @@ export default function Navbar() {
 	];
 	//links to be displayed when user is logged in
 	const loggedInLinks = [
+		{
+			name: "Home",
+			path: "/choice",
+			icon: faHome,
+		},
 		{
 			name: "Exercise",
 			path: "/choice",
@@ -82,11 +87,6 @@ export default function Navbar() {
 					W<span>ellness</span>Sphere
 				</Link>
 				<div className="nav-links">
-					{defaultLinks.map((link) => (
-						<Link to={link.path} key={link.name}>
-							{link.name}
-						</Link>
-					))}
 					{currentUser
 						? loggedInLinks.map((link) => (
 								<Link to={link.path} key={link.name}>
@@ -98,6 +98,11 @@ export default function Navbar() {
 									{link.name}
 								</Link>
 						  ))}
+					{defaultLinks.map((link) => (
+						<Link to={link.path} key={link.name}>
+							{link.name}
+						</Link>
+					))}
 					{currentUser && <span onClick={handleSignOut}>Sign out</span>}
 				</div>
 			</div>
