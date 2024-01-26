@@ -68,11 +68,6 @@ export default function Navbar() {
 			icon: faHome,
 		},
 		{
-			name: "Exercise",
-			path: "/choice",
-			icon: faCog,
-		},
-		{
 			name: "Profile",
 			path: "/profile",
 			icon: faCog,
