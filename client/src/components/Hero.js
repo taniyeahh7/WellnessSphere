@@ -22,8 +22,8 @@ export default function Hero() {
 					Wellness Sphere is your one-stop destination to practice healthy
 					eating habits and maintaining perfect exercising habits.
 				</p>
-				<Link to="/recipes">
-					<button className="btn">explore now</button>
+				<Link to="/signup">
+					<button className="btn">Get started today</button>
 				</Link>
 			</div>
 			<div className="col gallery">
