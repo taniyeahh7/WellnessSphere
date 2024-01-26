@@ -35,7 +35,11 @@ export default function OAuth() {
 	};
 	// ----- front-end code -----
 	return (
-		<button onClick={handleGoogleClick} type="submit">
+		<button
+			onClick={handleGoogleClick}
+			type="submit"
+			className="google-stop-stream-btn"
+		>
 			Continue with google
 		</button>
 	);

@@ -93,7 +93,7 @@ export default function Signup() {
 	return (
 		<div>
 			<div class="center">
-				<h1 style={{ marginTop: "1rem" }}>Sign Up</h1>
+				<h1>Edit Details</h1>
 				<form onSubmit={handleSubmit}>
 					<div class="txt_field">
 						<input type="text" required id="username" onChange={handleChange} />
@@ -135,16 +135,13 @@ export default function Signup() {
 						<span></span>
 						<label>Password</label>
 					</div>
-					<div className="pass">Forgot Password?</div>
 					<input
 						disabled={loading}
 						type="submit"
-						value={loading ? "Loading..." : "Sign Up"}
+						value={loading ? "Loading..." : "Update"}
 					/>
 				</form>
-				<OAuth />
 				<div className="signup_link">
-					Already a member? <Link to="/login">Login</Link>
 				</div>
 			</div>
 		</div>

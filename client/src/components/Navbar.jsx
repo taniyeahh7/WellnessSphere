@@ -67,6 +67,11 @@ export default function Navbar() {
 			path: "/choice",
 			icon: faCog,
 		},
+		{
+			name: "Profile",
+			path: "/profile",
+			icon: faCog,
+		},
 	];
 
 	// ----- front-end code -----
