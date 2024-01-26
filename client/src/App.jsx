@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import PrivateRoute from "./components/PrivateRoute";
 
 import Navbar from "./components/Navbar.jsx";
 // import ChefSection from "./components/ChefSection.js"; if want to include put in body also
