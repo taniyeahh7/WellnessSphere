@@ -15,7 +15,7 @@ import IngredientForm from "./pages/IngredientForm.js";
 import FilterRecipe from "./pages/FilterRecipe.js";
 import TextRecipe from "./pages/TextRecipe.js";
 import Curl from "./pages/Curl.js";
-import Profile from "./pages/Profile.js";
+import Profile from "./pages/Profile.jsx";
 import Pushup from "./pages/Pushup.js";
 
 function App() {
