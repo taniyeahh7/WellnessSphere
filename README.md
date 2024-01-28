@@ -1,9 +1,8 @@
-
 # Wellness Sphere Web App
 
 ## About
 
-The **Wellness Sphere** Web App is a project designed to provide a platform for promoting holistic well-being. Whether you're interested in fitness, mindfulness, or nutrition, this app aims to support your journey towards a healthier and balanced lifestyle.
+The **Wellness Sphere** Web App is a project designed to provide a platform for promoting holistic well-being. Whether you're interested in fitness, or nutrition, this app aims to support your journey towards a healthier and balanced lifestyle.
 
 ## Getting Started
 
@@ -82,4 +81,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ## `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+```
+
 ```
