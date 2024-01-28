@@ -13,11 +13,11 @@ export default function ExerciseChoice() {
 			image: "/img/gallery/img-pushup.png",
 			authorImg: "/img/top-chiefs/img-exercise-icon.jpg  ",
 		},
-		{
-			title: "Squats",
-			image: "/img/gallery/img-squat.png",
-			authorImg: "/img/top-chiefs/img-exercise-icon.jpg  ",
-		},
+		// {
+		// 	title: "Squats",
+		// 	image: "/img/gallery/img-squat.png",
+		// 	authorImg: "/img/top-chiefs/img-exercise-icon.jpg  ",
+		// },
 	];
 
 	return (
@@ -31,9 +31,9 @@ export default function ExerciseChoice() {
 			<Link to="/pushup">
 				<RecipeCard key={1} recipe={recipes[1]} />
 			</Link>
-			<Link to="/curl">
+			{/* <Link to="/curl">
 				<RecipeCard key={2} recipe={recipes[2]} />
-			</Link>
+			</Link> */}
 		</div>
 	);
 }
