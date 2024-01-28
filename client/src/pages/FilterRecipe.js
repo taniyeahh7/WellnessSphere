@@ -12,7 +12,7 @@ export default function Recipes() {
 	const recipeIngred = topRecipes.map((recipe) => recipe.ingredients);
 	const recipeInstruct = topRecipes.map((recipe) => recipe.instructions);
 	const recipeTime = topRecipes.map((recipe) => recipe.time);
-	console.log(recipeNames);
+	const recipeImg = topRecipes.map((recipe) => recipe.image);
 
 	useEffect(() => {
 		// Trigger additional actions or updates when state changes, if needed
@@ -22,10 +22,8 @@ export default function Recipes() {
 	// console.log(recipeNames[0]);
 	const recipes = [
 		{
-			// title: recipeNames[0],
 			title: recipeNames[0],
-			// title: " helloo",
-			image: "/img/general_cooking/cooking_1.jpg",
+			image: recipeImg[0],
 			authorImg: "/img/top-chiefs/img_1.jpg",
 			link: "/textrecipe",
 			ingred: recipeIngred[0],
@@ -34,8 +32,7 @@ export default function Recipes() {
 		},
 		{
 			title: recipeNames[1],
-			// title: " helloo",
-			image: "/img/general_cooking/cooking_2.jpg",
+			image: recipeImg[1],
 			authorImg: "/img/top-chiefs/img_2.jpg",
 			link: "/textrecipe",
 			ingred: recipeIngred[1],
@@ -44,8 +41,7 @@ export default function Recipes() {
 		},
 		{
 			title: recipeNames[2],
-			// title: " helloo",
-			image: "/img/general_cooking/cooking_3.jpg",
+			image: recipeImg[2],
 			authorImg: "/img/top-chiefs/img_3.jpg",
 			link: "/textrecipe",
 			ingred: recipeIngred[2],
@@ -54,8 +50,7 @@ export default function Recipes() {
 		},
 		{
 			title: recipeNames[3],
-			// title: " helloo",
-			image: "/img/general_cooking/cooking_4.jpg",
+			image: recipeImg[3],
 			authorImg: "/img/top-chiefs/img_4.jpg",
 			link: "/textrecipe",
 			ingred: recipeIngred[3],
@@ -64,8 +59,7 @@ export default function Recipes() {
 		},
 		{
 			title: recipeNames[4],
-			// title: " helloo",
-			image: "/img/general_cooking/cooking_5.jpg",
+			image: recipeImg[4],
 			authorImg: "/img/top-chiefs/img_5.jpg",
 			link: "/textrecipe",
 			ingred: recipeIngred[4],
@@ -74,8 +68,7 @@ export default function Recipes() {
 		},
 		{
 			title: recipeNames[5],
-			// title: " helloo",
-			image: "/img/general_cooking/cooking_6.jpg",
+			image: recipeImg[5],
 			authorImg: "/img/top-chiefs/img_6.jpg",
 			link: "/textrecipe",
 			ingred: recipeIngred[5],
@@ -87,7 +80,6 @@ export default function Recipes() {
 	const handleRecipeClick = (index) => {
 		const selectedRecipe = recipes[index];
 		navigate(`/filterrecipe/${index}`, { state: { recipe: selectedRecipe } });
-		// navigate(`/filterrecipe/${index}`, { state: selectedRecipe  });
 	};
 
 	return (
@@ -101,9 +93,6 @@ export default function Recipes() {
 					</div>
 				))}
 			</div>
-
-			{/* <p>{state[0]}</p> */}
-			{/* <Footer/> */}
 		</div>
 	);
 }
