@@ -25,7 +25,7 @@ export default function Recipes() {
 			// title: recipeNames[0],
 			title: recipeNames[0],
 			// title: " helloo",
-			image: "/img/gallery/img_1.jpg",
+			image: "/img/general_cooking/cooking_1.jpg",
 			authorImg: "/img/top-chiefs/img_1.jpg",
 			link: "/textrecipe",
 			ingred: recipeIngred[0],
@@ -35,7 +35,7 @@ export default function Recipes() {
 		{
 			title: recipeNames[1],
 			// title: " helloo",
-			image: "/img/gallery/img_4.jpg",
+			image: "/img/general_cooking/cooking_2.jpg",
 			authorImg: "/img/top-chiefs/img_2.jpg",
 			link: "/textrecipe",
 			ingred: recipeIngred[1],
@@ -45,7 +45,7 @@ export default function Recipes() {
 		{
 			title: recipeNames[2],
 			// title: " helloo",
-			image: "/img/gallery/img_5.jpg",
+			image: "/img/general_cooking/cooking_3.jpg",
 			authorImg: "/img/top-chiefs/img_3.jpg",
 			link: "/textrecipe",
 			ingred: recipeIngred[2],
@@ -55,7 +55,7 @@ export default function Recipes() {
 		{
 			title: recipeNames[3],
 			// title: " helloo",
-			image: "/img/gallery/img_6.jpg",
+			image: "/img/general_cooking/cooking_4.jpg",
 			authorImg: "/img/top-chiefs/img_5.jpg",
 			link: "/textrecipe",
 			ingred: recipeIngred[3],
@@ -65,7 +65,7 @@ export default function Recipes() {
 		{
 			title: recipeNames[4],
 			// title: " helloo",
-			image: "/img/gallery/img_10.jpg",
+			image: "/img/general_cooking/cooking_5.jpg",
 			authorImg: "/img/top-chiefs/img_6.jpg",
 			link: "/textrecipe",
 			ingred: recipeIngred[4],
@@ -75,7 +75,7 @@ export default function Recipes() {
 		{
 			title: recipeNames[5],
 			// title: " helloo",
-			image: "/img/gallery/img_1.jpg",
+			image: "/img/general_cooking/cooking_6.jpg",
 			authorImg: "/img/top-chiefs/img_1.jpg",
 			link: "/textrecipe",
 			ingred: recipeIngred[5],
