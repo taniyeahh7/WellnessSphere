@@ -22,9 +22,6 @@ export default function ExerciseChoice() {
 
 	return (
 		<div className="recipes-container">
-			{/* {recipes.map((recipe, index) => (
-                    <RecipeCard key = {index} recipe = {recipe} />
-                ))} */}
 			<Link to="/curl">
 				<RecipeCard key={0} recipe={recipes[0]} />
 			</Link>

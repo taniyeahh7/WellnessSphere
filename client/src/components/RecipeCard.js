@@ -1,5 +1,4 @@
-// import PreviousSearches from "../components/PreviousSearches";
-// import RecipeCard from "../components/RecipeCard"
+
 import CustomImage from "./CustomImage"
 
 export default function RecipeCard({recipe}){

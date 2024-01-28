@@ -230,6 +230,7 @@ img{
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
 // body{
 //   margin: 0;
 //   padding: 0;
@@ -237,8 +238,9 @@ img{
 //   height: 100vh;
 // //   overflow: hidden;
 // }
+
 .center{
-  margin-top: 1rem; /////
+  margin-top: 1rem; //change whenever needed
   position: absolute;
   top: 50%;
   left: 50%;
@@ -248,21 +250,25 @@ img{
   border-radius: 10px;
   box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
 }
+
 .center h1{
   text-align: center;
   padding: 20px 0;
   border-bottom: 1px solid silver;
 }
+
 .center form{
   padding: 0 40px;
   box-sizing: border-box;
 }
+
 form .txt_field{
   position: relative;
   border-bottom: 2px solid #adadad;
   margin-top: 2em;
   margin: 30px 0;
 }
+
 .txt_field input{
   width: 100%;
   padding: 0 5px;
@@ -272,6 +278,7 @@ form .txt_field{
   background: none;
   outline: none;
 }
+
 .txt_field label{
   position: absolute;
   top: 50%;
@@ -282,6 +289,7 @@ form .txt_field{
   pointer-events: none;
   transition: .5s;
 }
+
 .txt_field span::before{
   content: '';
   position: absolute;
@@ -292,23 +300,28 @@ form .txt_field{
   background: var(--primary-color);
   transition: .5s;
 }
+
 .txt_field input:focus ~ label,
 .txt_field input:valid ~ label{
   top: -5px;
   color: var(--primary-color);
 }
+
 .txt_field input:focus ~ span::before,
 .txt_field input:valid ~ span::before{
   width: 100%;
 }
+
 .pass{
   margin: -5px 0 20px 5px;
   color: #a6a6a6;
   cursor: pointer;
 }
+
 .pass:hover{
   text-decoration: underline;
 }
+
 input[type="submit"]{
   width: 100%;
   height: 50px;
@@ -321,20 +334,24 @@ input[type="submit"]{
   cursor: pointer;
   outline: none;
 }
+
 input[type="submit"]:hover{
   border-color: var(--primary-color);
   transition: .5s;
 }
+
 .signup_link{
   margin: 30px 0;
   text-align: center;
   font-size: 16px;
   color: #666666;
 }
+
 .signup_link a{
   color: var(--primary-color);
   text-decoration: none;
 }
+
 .signup_link a:hover{
   text-decoration: underline;
 }
@@ -366,10 +383,6 @@ border-color: var(--primary-color);
 transition: .5s;
 }
 
-//////////////////////////////////////////////////////////
-/// 
-
-
 .card {
     position: relative;
     display: flex;
@@ -386,43 +399,3 @@ transition: .5s;
 .me-2 {
     margin-right: .5rem!important;
 }
-// .choice-card-container {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     height: 300vh; /* 100% of the viewport height */
-//   }
-  
-// .choice-card {
-//     background-color: #fff;
-//     border: 1px solid #ddd;
-//     border-radius: 8px;
-//     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-//     padding: 20px;
-//     margin: 10px;
-//     text-align: center;
-//     width: 600px;
-// }
-  
-//   @media (max-width: 1000px) {
-//     /* Adjust styles for smaller screens */
-//     .choice-card-container {
-//       flex-direction: column; /* Stack cards vertically on small screens */
-//     }
-  
-//     .choice-card {
-//       width: 80%; /* Adjust the width for better responsiveness */
-//     }
-//   }
-
-
-
-// .choice-card{
-//     display: flex;
-
-// }
-
-// .choice-card-subdiv{
-//     background-color: #0A0A0A;
-// }
-

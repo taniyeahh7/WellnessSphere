@@ -19,7 +19,6 @@ export default function Recipes() {
 		console.log("State changed:", state);
 	}, [state]);
 
-	// console.log(recipeNames[0]);
 	const recipes = [
 		{
 			title: recipeNames[0],

@@ -16,10 +16,6 @@ export default function Choice(){
 
     return (
         <div className="recipes-container">
-                {/* {recipes.map((recipe, index) => (
-                    <RecipeCard key = {index} recipe = {recipe} />
-                ))} */}
-
                 <Link to="/ingredientform"><RecipeCard key={0} recipe={recipes[0]} /></Link>
                 <Link to="/exercisechoice"><RecipeCard key={1} recipe={recipes[1]}/></Link>
         </div>
