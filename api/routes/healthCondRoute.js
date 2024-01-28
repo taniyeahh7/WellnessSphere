@@ -5,6 +5,7 @@ import {
 	updateHealthCondition,
 	getHealthCondition,
 	getAllHealthConditions,
+	getHealthConditionInfo,
 } from "../controllers/healthCondCtrl.js";
 import { verifyToken } from "../utils/verifyUser.js";
 
@@ -15,5 +16,6 @@ router.delete("/delete/:id", deleteHealthCondition);
 router.post("/update/:id", updateHealthCondition);
 router.get("/get/:id", getHealthCondition);
 router.get("/getAll", getAllHealthConditions);
+router.get("/getInfo/:title", getHealthConditionInfo);
 
 export default router;

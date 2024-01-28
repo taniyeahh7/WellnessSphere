@@ -61,6 +61,24 @@ export const getHealthCondition = async (req, res, next) => {
 	}
 };
 
+//function to get information about a specific health condition
+export const getHealthConditionInfo = async (req, res, next) => {
+	try {
+		const healthCondition = await HealthCondition.findOne({
+			title: req.params.title,
+		});
+		if (!healthCondition) {
+			return next(errorHandler(404, "Health Condition not found!"));
+		}
+		// If health condition is found, extract only the required fields
+		const { ingredientsAvoid, ingredientsBeneficial } = healthCondition;
+		res.status(200).json({ ingredientsAvoid, ingredientsBeneficial });
+	} catch (error) {
+		// Handle any errors that occur during the process
+		next(error);
+	}
+};
+
 // function to fetch all health conditions
 export const getAllHealthConditions = async (req, res, next) => {
 	try {
